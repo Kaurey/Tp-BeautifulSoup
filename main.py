@@ -48,17 +48,28 @@ def fetch_articles(url):
                 #     print(summary_list)
 
                 # catégories de l'article
-                categories_div = article_content.find('ul', class_='tags-list')
-                if categories_div:
-                    categories = [li.get_text(strip=True) for li in categories_div.find_all('li')]
-                    print(categories)
+                # categories_div = article_content.find('ul', class_='tags-list')
+                # if categories_div:
+                #     categories = [li.get_text(strip=True) for li in categories_div.find_all('li')]
+                #     print(categories)
                     
-                # résumé de l'article
-                resume_div = article_content.find('div', class_='article-hat')
-                if resume_div:
-                    resume_text = resume_div.get_text(strip=True)
-                    print(resume_text)
-            
+                # # résumé de l'article
+                # resume_div = article_content.find('div', class_='article-hat')
+                # if resume_div:
+                #     resume_text = resume_div.get_text(strip=True)
+                #     print(resume_text)
+
+                #date de publication
+                time_tag = article_content.find('time', class_='entry-date')
+
+                if time_tag and time_tag.has_attr('datetime'):
+                    datetime_str = time_tag['datetime']
+                    date_formatted = datetime_str.split('T')[0]
+                    print(date_formatted)
+                else:
+                    date_formatted = None
+
+                
             
         return []
     except requests.exceptions.RequestException as e :
