@@ -68,6 +68,13 @@ def fetch_articles(url):
                     print(date_formatted)
                 else:
                     date_formatted = None
+                    
+                #aueteur de l'article
+                author_tag = article_content.find('span', class_='byline')
+                if author_tag:
+                    author = author_tag.get_text(strip=True)
+                    print(author)
+                
 
                 
             
