@@ -78,7 +78,7 @@ def fetch_articles(url):
             summary_list = get_summary(article_content)
 
             # Catégories
-            categories_div = article_content.find('ul', class_='tags-list')
+            categories_div = article_content.find_next('ul', class_='tags-list')
             categories = [li.get_text(strip=True) for li in categories_div.find_all('li')] if categories_div else []
 
             # Résumé
